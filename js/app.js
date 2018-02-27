@@ -83,7 +83,7 @@ $(function() {
 
     function insertMainImg(img){
         let main = $(".main");
-        if (img.type === "image") {
+        if (img.type === "image" || img.media_type === "image") {
             main.css("backgroundImage", `url(${img.url})`);
         } else {
             let video = $("<iframe>").attr("src", img.url+"?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ").addClass("video-background");

@@ -12,11 +12,14 @@ body{
 section, header{
     width: 100%;
 }
+header{
+    height: 100vh;
+}
 .main{
     display: flex;
     flex-wrap: wrap;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-position: center;
 }
 .main > div{
      padding-top: 40vh;
