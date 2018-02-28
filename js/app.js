@@ -40,26 +40,41 @@ $(function() {
         let element;
         if(type === "image") {
             element = $("<img>").attr("src", url);
-        } else if(type === "video"){
-            element = $("<iframe>").attr("src", url)
-        }
-        let paragraph = $("<p>").text(title);
-        container.append(paragraph).append(element);
-        $(element).on("load", function(){
+            let paragraph = $("<p>").text(title);
+            container.append(paragraph).append(element);
+            $(element).on("load", function(){
+                imagesCounter++;
+                let rightColHeight = $("#colRight").height();
+                let leftColHeight = $("#colLeft").height();
+                if(rightColHeight > leftColHeight){
+                    $("#colLeft").append(container);
+                } else {
+                    $("#colRight").append(container);
+                }
+                if(imagesCounter === 4){
+                    $('html, body').animate({
+                        scrollTop: $("#gallery").offset().top
+                    }, 500);
+                }
+            });
+        } else if(type === "video") {
+            element = $("<iframe>").attr("src", url);
+            let paragraph = $("<p>").text(title);
+            container.append(paragraph).append(element);
             imagesCounter++;
             let rightColHeight = $("#colRight").height();
             let leftColHeight = $("#colLeft").height();
-            if(rightColHeight > leftColHeight){
+            if (rightColHeight > leftColHeight) {
                 $("#colLeft").append(container);
             } else {
                 $("#colRight").append(container);
             }
-            if(imagesCounter === 6){
+            if (imagesCounter === 4) {
                 $('html, body').animate({
                     scrollTop: $("#gallery").offset().top
-                }, 1000);
+                }, 500);
             }
-        });
+        }
     }
 
     function createImagesArray(datesArr){
